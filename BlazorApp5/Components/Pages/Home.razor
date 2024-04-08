@@ -1,0 +1,41 @@
+﻿@page "/"
+
+<h3>Ansökan om att studera</h3>
+
+@if (showSuccessMessage)
+{
+    <div class="alert alert-success" role="alert">
+        Ansökan har skickats in
+    </div>
+}
+
+<EditForm Model="@studentApplication" OnInvalidSubmit="SubmitForm">
+    
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <label for="name">Namn:</label>
+        <InputText id="name" class="form-control" @bind-Value="studentApplication.Name" />
+        <ValidationMessage For="@(() => studentApplication.Name)"/>
+
+    </div>
+    <div class="form-group">
+        <label for="DateOfBirth">Födelsedatum:</labe>
+            <InputDate id="dateOfBirth" class="form-control" @bind-Value="studentApplication.DateOfBirth" />
+            <ValidationMessage For="@(() => studentApplication.DateOfBirth)" />
+    </div>
+    <div class="form-group">
+        <label for="email">E-post</labels>
+            <InputText id="email" class="form-control" @bind-Value="studentApplication.Email"/>
+            <ValidationMessage For="@(() => studentApplication.Email)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Skicka</button>
+</EditForm>
+
+
+
+@code {
+
+}
