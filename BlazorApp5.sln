@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp5", "BlazorApp5\BlazorApp5.csproj", "{CA6CC4B8-1F62-4CC3-9544-D29DEBEC23A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAcademy", "BlazorApp5\BlazorAcademy.csproj", "{CA6CC4B8-1F62-4CC3-9544-D29DEBEC23A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@inject BlazorAcademy.Services.StudentApplicationService StudentApplicationService
+
 <h3>Ansökan om att studera</h3>
 
 @if (showSuccessMessage)
@@ -9,7 +11,7 @@
     </div>
 }
 
-<EditForm Model="@studentApplication" OnInvalidSubmit="SubmitForm">
+<EditForm Model="@studentApplication" OnInvalidSubmit="SubmitForm" FormName="studentForm">
     
     <DataAnnotationsValidator/>
     <ValidationSummary/>
@@ -21,12 +23,12 @@
 
     </div>
     <div class="form-group">
-        <label for="DateOfBirth">Födelsedatum:</labe>
+        <label for="DateOfBirth">Födelsedatum:</label>
             <InputDate id="dateOfBirth" class="form-control" @bind-Value="studentApplication.DateOfBirth" />
             <ValidationMessage For="@(() => studentApplication.DateOfBirth)" />
     </div>
     <div class="form-group">
-        <label for="email">E-post</labels>
+        <label for="email">E-post</label>
             <InputText id="email" class="form-control" @bind-Value="studentApplication.Email"/>
             <ValidationMessage For="@(() => studentApplication.Email)" />
     </div>
@@ -57,12 +59,12 @@
     }
 
 
-    private bool ISValidEmail( string email)
+    private bool IsValidEmail( string email)
     {
         try
         {
-            var mailAdress = new System.Net.Mail.MailAdress(email);
-            return mailAdress.Adress == email;
+            var mailAddress = new System.Net.Mail.MailAddress(email);
+            return mailAddress.Address == email;
         }
         catch
         {
