@@ -21,7 +21,19 @@
         </tr>
     </thead>
     
-    
+    <tbody>
+        @foreach (var application in filteredApplications)
+        {
+            <tr>
+                <td>@application.Name</td>
+                <td>@application.DateOfBirth.ToShortDateString()</td>
+                <td>@application.Email</td>
+                <td>@application.Age</td>
+                <td><button class="btn btn-danger" @onclick="(() => DeleteApplication(application.Id))">Ta bort</button></td>
+               
+            </tr>
+        }
+    </tbody>
     
     
     </table>
@@ -29,7 +41,34 @@
 
 
 
-
 @code {
+    private List<StudentApplication> applications;
+    private List<StudentApplication> filteredApplications = new List<StudentApplication>();
+    private int filterAge;
+
+    protected override async Task OnInitializedAsync()
+    {
+        applications = await StudentApplicationService.GetStudentApplications();
+        FilterApplications();
+    }
+
+    private void FilterApplications()
+    {
+        if (filterAge == 0)
+        {
+            filteredApplications = applications;
+        }
+        else
+        {
+            filteredApplications = applications.Where(a => a.Age == filterAge).ToList();
+        }
+    }
+    private async Task DeleteApplication(int id)
+    {
+        await StudentApplicationService.DeleteStudentApplication(id);
+        applications.Remove(applications.Find(a => a.Id == id));
+        FilterApplications();
+    }
+
 
 }

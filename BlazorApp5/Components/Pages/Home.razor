@@ -37,5 +37,38 @@
 
 
 @code {
+    private StudentApplication studentApplication = new StudentApplication();
+    private bool showSuccessMessage = false;
+
+    private async Task SubmitForm()
+    {
+        if (studentApplication.Age < 10)
+        {
+            return;
+        }
+
+        if (!IsValidEmail(studentApplication.Email))
+        {
+            return;
+        }
+
+        await StudentApplicationService.AddStudentApplication(studentApplication);
+        showSuccessMessage = true;
+    }
+
+
+    private bool ISValidEmail( string email)
+    {
+        try
+        {
+            var mailAdress = new System.Net.Mail.MailAdress(email);
+            return mailAdress.Adress == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
 
 }
